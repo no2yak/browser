@@ -60,9 +60,11 @@ export default {
             getHashByAudio,
             getHashByMime
         ].filter(parser=>list.includes(parser.name));
-        // 修改：将逻辑核心数量 hardwareConcurrency 加入指纹计算
-        let {screenWidth,screenHeight,screenColorDepth,isTouch,hardwareConcurrency} = await screenParser.getInfo();
-        let group = [userAgent,JSON.stringify({screenWidth,screenHeight,screenColorDepth,isTouch,hardwareConcurrency})];
+        // 修改：将 system 和 gpu 信息加入指纹计算
+        let systemInfo = await systemParser.getInfo();
+        let gpuInfo = await gpuParser.getInfo();
+        let {screenWidth,screenHeight,screenColorDepth,isTouch} = await screenParser.getInfo();
+        let group = [userAgent,JSON.stringify({screenWidth,screenHeight,screenColorDepth,isTouch,...systemInfo,...gpuInfo})];
         for(let parser of parserList){
             data[parser.name] = await parser.getInfo();
             group.push(data[parser.name]);
@@ -70,6 +72,7 @@ export default {
         data['value'] = getMD5(group.join(','));
         return data;
     },
+
     isSupport(name,value){
         let support = [
             supportFontFamily,
