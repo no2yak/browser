@@ -113,12 +113,17 @@ export default {
             architecture = await globalThis.navigator.userAgentData?.getHighEntropyValues(['architecture']).then(item => item.architecture||architecture);
             bitness =  await globalThis.navigator.userAgentData?.getHighEntropyValues(['bitness']).then(item => +item.bitness||bitness);
         }
+
+        // 新增
+        const hardwareConcurrency = globalThis?.navigator?.hardwareConcurrency||0;
+
         return {
             system,
             systemVersion,
             platform,
             architecture,
-            bitness
+            bitness,
+            hardwareConcurrency
         };
     }
 }

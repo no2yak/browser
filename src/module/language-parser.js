@@ -7,7 +7,7 @@ export default {
     },
     async getInfo(){
         let g = globalThis?.navigator?.language||globalThis?.navigator?.browserLanguage||globalThis?.navigator?.systemLanguage;
-        if (typeof g !== 'string') return 'Unknown language'
+        if (typeof g !== 'string') return ''
         let arr = g.split('-');
         if (arr[1]) {
             arr[1] = arr[1].toUpperCase();

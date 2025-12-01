@@ -4,7 +4,7 @@ export default {
         return {};
     },
     async getInfo(){
-        let timezone = Intl?.DateTimeFormat()?.resolvedOptions()?.timeZone;
+        let timezone = Intl?.DateTimeFormat()?.resolvedOptions()?.timeZone ||'';
 
         return {
             timezone

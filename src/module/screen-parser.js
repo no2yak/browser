@@ -44,8 +44,11 @@ export default {
         const screenColorDepth = globalThis?.screen.colorDepth;
         const screenPixelDepth = globalThis?.screen.pixelDepth;
         // 其他信息
-        const screenOrientation = screen.orientation?.type || '未知';
+        const screenOrientation = screen.orientation?.type || '';
         const isTouch = globalThis?.navigator?.maxTouchPoints>0||false;
+
+        // 新增： 是否有扩展屏幕
+        const isExtended = globalThis?.screen.isExtended||false;
 
         return {
             screenWidth,
@@ -57,6 +60,7 @@ export default {
             screenPixelDepth,
             screenOrientation,
             isTouch,
+            isExtended,
         };
     }
 }
