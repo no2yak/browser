@@ -23,6 +23,10 @@ export default async function(){
         if(PeerConnection){
             const conn = new PeerConnection({
                 iceServers: [{
+                    urls: 'stun:stun.miwifi.com'
+                },{
+                    urls: 'stun:hw-v2-web-player-tracker.biliapi.net'
+                },{
                     urls: 'stun:stun.cloudflare.com:3478'
                 },{
                     urls: 'stun:stun.l.google.com:19302',
